@@ -114,6 +114,25 @@ we used shared state have the following sections
 1. users: contains all user data
 2. loggedUser:hold loogeduser id and personal data
 3. questions:contains all questions
+4. uservote for an unanswered question 
+
+## steps behind user experience
+1. first the user is led to login page where he is asked to select a user from the users data  loaded to the state at the login page
+2. the specific user data is then passed to the state (store ) where it is gets acessed by the home component which the user is automatically led to
+3. at the Home page the home component dispatchs the questions data and compare it with the specific user data
+to determine the questions that the user answered then render two catogery of questions answered and un answered
+4. the components  AnsQuestions and UnAnsQuestion are rendered to show the unanswered and answered questions recpectively who are passed question by question as a prop
+5. when user clicks on viewpull  action receivequestionAction is dispathced to save the questiondetails to the store ,then the QuestionDetails component is called at url questions/question id takes the question details from the store and shows it onpage
+6. similary ,when user choose to vote on an unswered question clicking submit both the question details and the uservote are being added to the store using  receivequestionAction and saveuserAnswerAction
+7. the saveuserAnswerAction modifies the user data to add the recently answered question to the answers array in the user data  so it appears as answered question in the home page 
+8. to add a new question the user has to click on new question at the Navbar then saveQuestionAction is dispatched
+to add the newquestion to the questions section in the store then the user is redirected to the home page 
+as the store questions is updated the home should show the new question as unanswered one 
+9. the leader board get acess to all users data state at the store with modifications of user actions and sort them
+according to their total score answered questions+ asked questions
+10. the home reducer  dispatch all actions related to questions
+11. the login reducer dispatch all actions related to users
+12. the question reducer add a partition of specific question data used by reducer
 
 
 
