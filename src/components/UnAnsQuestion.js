@@ -50,9 +50,9 @@ class UnAnsQuestion extends Component {
         const showdetails = () => {
             return (
 
-                setTimeout(() => {
+              
                     <Redirect to={`/questions/${this.props.obj.id}`} />
-                }, 3000)
+               
 
             )
         }
