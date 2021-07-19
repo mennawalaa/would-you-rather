@@ -1,0 +1,105 @@
+body {
+  
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    color: #252525;
+}
+.vip {
+    
+    font-family: sans-serif;
+    font-size: 20px;
+    margin-left: 20px;
+    
+
+}
+.center{
+    text-align: left;
+    font-weight: bold;
+}
+.container {
+    max-width: 1000px;
+    padding: 10px;
+    position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%)
+  }
+
+  .btn {
+    text-transform: uppercase;
+    padding: 10px;
+    border: 3px solid rgba(0,0,0,.29);
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: bold;
+    background-color: rgb(208, 193, 218);
+    margin-left: auto;
+    margin-right: auto;
+
+  }
+  .btn:hover {
+    border-color: rgba(0,0,0,.5);
+    text-decoration: none;
+  }
+  .card {
+    margin-top: 5px; 
+    width: 100%;
+    max-width: 590px;
+    padding: 10px;
+    display: flex;
+    border-radius: 3px;
+    cursor: pointer;
+    border: 1px solid rgb(199, 187, 187);
+  }
+  .avatar {
+    height: 50px;
+    border-radius: 25px;
+    margin-top: 10px;
+  }
+  .auther {
+    border: none;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    color: #969696;
+    cursor: pointer;
+  }
+  .menu-outer {
+	background:  repeat-x;
+  object-position: right top;
+  border: 1px solid rgb(187, 171, 171);
+}
+
+
+.table {
+	display: table;   /* Allow the centering to work */
+
+}
+.leader{
+  width: 100%;
+  display: flex;
+  border: 1px solid rgb(32, 28, 28);
+}
+
+ul.horizontal-list {
+	min-width: 696px;
+	list-style: none;
+	padding-top: 10px;
+  border: brown;
+	}
+	ul.horizontal-list li {
+		display: inline;
+        padding-left: 20px;
+        padding-right: 20px;
+	}
+    .active {
+        font-weight: bold;
+      }
+    .vote{
+        display: inline;
+        color:crimson;
+        font-style: italic;
+        
+    }
