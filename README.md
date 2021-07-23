@@ -99,6 +99,11 @@ _Parameters_: Object that contains the following properties: `authedUser`, `qid`
 
 This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests. For details, check out [CONTRIBUTING.md](https://github.com/udacity/reactnd-project-would-you-rather-starter/blob/master/CONTRIBUTING.md).
 
+## installation steps
+
+1.  (npm install )to install the dependencies of the project.
+2.  (npm start) to launch the project.
+
 ## solution steps
 
 using redux and react
