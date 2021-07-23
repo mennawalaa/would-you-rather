@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { receiveVotesAction, saveuserAnswerAction } from '../actions/home'
 import { receiveQusetionAction } from '../actions/question'
-import NavBar from './NavBar'
+
 
 class UnAnsQuestion extends Component {
     constructor() {
@@ -15,10 +15,7 @@ class UnAnsQuestion extends Component {
         this.onValueChange = this.onValueChange.bind(this);
         this.formSubmit = this.formSubmit.bind(this);
     }
-    componentDidMount() {
-        //modify the data base to include the user answer
-        // this.props.saveuserAnswerAction(this.props.loggeduser, this.props.obj.id, "optionOne");
-    }
+
 
     formSubmit = (event) => {
         event.preventDefault();
@@ -50,9 +47,9 @@ class UnAnsQuestion extends Component {
         const showdetails = () => {
             return (
 
-              
-                    <Redirect to={`/questions/${this.props.obj.id}`} />
-               
+
+                <Redirect to={`/questions/${this.props.obj.id}`} />
+
 
             )
         }
@@ -64,10 +61,10 @@ class UnAnsQuestion extends Component {
                 <div className='card'>
                     <div>
                         <p className='auther'>{this.props.users[this.props.obj.author].name}</p>
-                        <img className='avatar' src={this.props.users[this.props.obj.author].avatarURL} />
+                        <img className='avatar' alt="problem in loading page" src={this.props.users[this.props.obj.author].avatarURL} />
                     </div>
                     <div className='vip'>
-                        <p className='center'>would you rather</p>
+                        <p className='center'>would you rather {this.props.obj.timestamp}</p>
                         <form onSubmit={this.formSubmit}>
                             <div className="radio">
                                 <label>
@@ -105,16 +102,10 @@ class UnAnsQuestion extends Component {
         )
     }
 }
-/*
-<Link to='/questions' >
-                            <button className='btn' type="submit">
-                                Submit
-                            </button>
-                        </Link>
- */
+
 const mapStateToProps = (state) => {
 
-    console.log("data to home", state.home);
+
 
 
     return {
@@ -122,7 +113,7 @@ const mapStateToProps = (state) => {
         questions: state.home.questions,
         loggeduser: state.login.loggeduser,
         users: state.login.users,
-        //   images: Object.keys(state.login.users.avatarURL)
+
     }
 }
 const mapDispatchToProps = {

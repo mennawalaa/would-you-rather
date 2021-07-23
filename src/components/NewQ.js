@@ -1,16 +1,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom';
 import NavBar from './NavBar';
-import { saveQuestionAction } from '../actions/newquestion'
+import { saveQuestionAction, addUnansweredQ } from '../actions/newquestion'
 import { Redirect } from 'react-router-dom';
 
 class NewQ extends Component {
-    state = {
-        optionone: " ",
-        optiontwo: " ",
-        backtoHome: false
+    constructor(props) {
+        super(props)
+        this.state = {
+            optionone: " ",
+            optiontwo: " ",
+            backtoHome: false
+        }
     }
+
     handleChange1 = (event) => {
         console.log("change", event);
         this.setState({ optionone: event.target.value })
@@ -23,22 +26,26 @@ class NewQ extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         this.setState({ backtoHome: true })
+
         if (this.props.saveQuestionAction(this.state.optionone, this.state.optiontwo, this.props.loggeduser)) {
-            console.log("back to home bage");
+            //    console.log("back to home bage");
             this.setState({ backtoHome: true })
         }
-        // console.log("back to home bage");
-        //  this.setState({ backtoHome: true })
-        //   <Redirect to={`/Home/${this.props.loggeduser.id}`} />
+
     }
-    componentDidMount() {
-        this.setState({ backtoHome: false });
-    }
+
     render() {
-        const backtohome = () => {
-            return (
-                <Redirect to={`/Home/${this.props.loggeduser.id}`} />
-            )
+
+
+        if (this.state.backtoHome === true) {
+            console.log("the user id  back to home");
+
+            return <Redirect
+                to={{
+                    pathname: `/Home/${this.props.loggeduser.id}`,
+                    state: { from: this.state.backtoHome }
+                }}
+            />
         }
         return (
             <div>
@@ -73,24 +80,26 @@ class NewQ extends Component {
                         <br />
                         <button>submit</button>
                     </form>
-                    {(this.state.backtoHome === true) && (backtohome())}
+
                 </div>
                 <NavBar />
             </div>
         )
     }
 }
+
 const mapStateToProps = (state) => {
 
 
     return {
 
         loggeduser: state.login.loggeduser,
-        //   images: Object.keys(state.login.users.avatarURL)
+
     }
 }
 
 const mapDispatchToProps = {
     saveQuestionAction,
+    addUnansweredQ,
 }
 export default connect(mapStateToProps, mapDispatchToProps)(NewQ)

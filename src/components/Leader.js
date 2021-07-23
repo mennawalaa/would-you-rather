@@ -1,12 +1,22 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom';
 import NavBar from './NavBar';
 
 
 class Leader extends Component {
     render() {
-        console.log(this.props.users)
+        //  console.log("props in leader board", this.props);
+        //   console.log("the contents of the adress bar in leader", window.location.href);
+        /*
+        if (this.props.users !== undefined) {
+            var sorted = [];
+            for (const user in this.props.users) {
+                console.log("cal qu score", user, this.props.users[user].questions.length);
+                console.log("cal ans score", user, Object.keys(this.props.users[user].answers).length);
+                console.log("their sum", (this.props.users[user].questions.length) + (Object.keys(this.props.users[user].answers).length));
+            }
+        }
+        */
         return (
             <div>
                 <div >
@@ -21,6 +31,7 @@ class Leader extends Component {
                                     <p className='active'>{user.name}</p>
 
                                     <img className='avatar'
+                                        alt="problem in loading page"
                                         src={user.avatarURL} />
 
                                     <p>asked {user.questionsScore}</p>
@@ -31,9 +42,8 @@ class Leader extends Component {
                             ))
                         )}
                     </div>
-
+                    <NavBar />
                 </div>
-                <NavBar />
             </div>
         )
     }
@@ -41,14 +51,14 @@ class Leader extends Component {
 
 }
 const mapStateToProps = (state) => {
-    console.log("state to login component", state.login);
+
     if (state.login !== undefined) {
         var sorted = [];
         for (const user in state.login.users) {
-            console.log("cal qu score", user, state.login.users[user].questions.length);
-            console.log("cal ans score", user, Object.keys(state.login.users[user].answers).length);
-            console.log("their sum", (state.login.users[user].questions.length) + (Object.keys(state.login.users[user].answers).length));
-            //add a question score property 
+            //   console.log("cal qu score", user, state.login.users[user].questions.length);
+            // console.log("cal ans score", user, Object.keys(state.login.users[user].answers).length);
+            //   console.log("their sum", (state.login.users[user].questions.length) + (Object.keys(state.login.users[user].answers).length));
+            //add a question score property
             state.login.users[user].questionsScore = state.login.users[user].questions.length;
             // add an answer score property
             state.login.users[user].answersScore = Object.keys(state.login.users[user].answers).length;
@@ -56,23 +66,24 @@ const mapStateToProps = (state) => {
             state.login.users[user].totalScore = (state.login.users[user].questions.length) + (Object.keys(state.login.users[user].answers).length)
             sorted.push(state.login.users[user]);
         }
-        console.log("3yza ashof sorted", sorted);
+        //  console.log("3yza ashof sorted", sorted);
         let news = sorted.sort((a, b) => {
-            console.log("the sort function inside");
-            console.log("a", a);
-            console.log("b", b);
+            //    console.log("the sort function inside");
+            //  console.log("a", a);
+            //   console.log("b", b);
             return b.totalScore - a.totalScore
         })
-        console.log("the sorted", sorted);
+        // console.log("the sorted", sorted);
         news.forEach((e) => {
             console.log(`${e.id} ${e.totalScore} `);
         });
     }
 
+    //console.log("state to login component", state.login);
     return {
         users: sorted,
 
-        //   images: Object.keys(state.login.users.avatarURL)
+
     }
 }
 export default connect(mapStateToProps)(Leader)

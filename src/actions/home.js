@@ -24,7 +24,7 @@ export const getQuestionsAction = () => async (dispatch) => {
 }
 
 export const receiveVotesAction = (answer, qid, authedUser) => {
-    console.log("inputs to receiveVotesAction", authedUser, qid, answer);
+    //  console.log("inputs to receiveVotesAction", authedUser, qid, answer);
     return {
         type: VOTES,
         answer,
@@ -52,7 +52,7 @@ export const updateUserAction = (qid, userVote, authedUser) => {
 
 
 export const saveuserAnswerAction = (authedUser, qid, ans) => async (dispatch) => {
-    console.log("inside the saveuserAnswerAction");
+    //  console.log("inside the saveuserAnswerAction");
     dispatch(receiveVotesAction(ans, qid, authedUser))
     // let answer = { [qid]: ans }
     const res = await _saveQuestionAnswer({
@@ -60,6 +60,7 @@ export const saveuserAnswerAction = (authedUser, qid, ans) => async (dispatch) =
         qid,
         answer: ans,
     })
+    console.log("the res of save question", res);
     dispatch(updateAnswerdQuestionsAction(qid, ans, authedUser))
     dispatch(updateUserAction(qid, ans, authedUser))
 

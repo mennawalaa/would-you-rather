@@ -2,6 +2,7 @@ import { _saveQuestion } from '../_DATA.js'
 export const RECEIVE_NEWQ_DATA = 'RECEIVE_NEWQ_DATA'
 export const ADDQUESTION = 'ADDQUESTION'
 export const USERASKEDNEWQUESTION = 'USERASKEDNEWQUESTION'
+export const ADDUNASNWEREDQ = 'ADDUNASNWEREDQ'
 
 export const receiveNewQuestionData = (author, option1, option2) => {
     // console.log("recever user action", questions);
@@ -24,13 +25,18 @@ export const addQuestiontouserAction = (newQuestion) => {
         newQuestion,
     }
 }
-
+export const addUnansweredQ = (newquestion) => {
+    return {
+        type: ADDUNASNWEREDQ,
+        newquestion
+    }
+}
 export const saveQuestionAction = (optionOneText, optionTwoText, author) => async (dispatch) => {
-    console.log("input data in new question action", optionOneText, optionTwoText);
+    //  console.log("input data in new question action", optionOneText, optionTwoText);
 
     const res = await _saveQuestion({ optionOneText, optionTwoText, author });
-    console.log("the new question in action", res);
-
+    // console.log("the new question in action", res);
+    dispatch(addUnansweredQ(res));
     dispatch(addQuestionAction(res));
     dispatch(addQuestiontouserAction(res));
 }

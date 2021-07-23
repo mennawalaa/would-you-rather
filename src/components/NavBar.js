@@ -4,12 +4,10 @@ import { connect } from 'react-redux'
 import { logoutAction } from '../actions/login'
 
 class NavBar extends Component {
-    logout = () => {
-        // this.props.logoutAction();
-    }
+
     render() {
         const showNAv = () => {
-            // console.log("goa el nav", this.props.users[this.props.loggeduser]);
+
             if (this.props.loggeduser !== undefined) {
                 return (
                     <div className='menu-outer'>
@@ -58,8 +56,7 @@ class NavBar extends Component {
 
 }
 const mapStateToProps = (state) => {
-    console.log("navbar1", state.login.users)
-    console.log("navbar2", state.login.loggeduser)
+
 
     return {
 
